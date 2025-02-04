@@ -2,6 +2,8 @@ from typing import Dict, Any, Generator
 
 from keboola.http_client import HttpClient
 
+PAGE_SIZE = 100
+
 
 class LeverClient(HttpClient):
 
@@ -17,7 +19,7 @@ class LeverClient(HttpClient):
         offset = None
 
         while True:
-            params['limit'] = 50
+            params['limit'] = PAGE_SIZE
             if offset:
                 params['offset'] = offset
             response = self.get_raw(endpoint, params=params)
